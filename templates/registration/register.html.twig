@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfilController!
+{% endblock %}
+
+
+{% block body %}
+	<style></style>
+
+	<div class="container mx-auto">
+		<div class="hero min-h-screen bg-base-200">
+			<div class="hero-content flex-col lg:flex-row-reverse">
+				<div class="text-center lg:text-left">
+					<h1 class="text-5xl font-bold tc1">Inscription!</h1>
+					<p class="py-6 tc4">Inscrivez-vous dès maintenant pour accéder à l'intégralité du contenu du site et découvrir encore plus de recettes.. 🥐 🍩 🍲 🥗</p>
+				</div>
+				<div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+
+					<form class="card-body" method="post" action="{{ path('app_register') }}">
+						{{ form_start(registrationForm) }}
+
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text tc2">Nom :</span>
+							</label>
+							{{ form_widget(registrationForm.nom, {'attr': {'class': 'input input-bordered'}, 'required': true}) }}
+						</div>
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text tc2">Prénom :</span>
+							</label>
+							{{ form_widget(registrationForm.prenom, {'attr': {'class': 'input input-bordered'}, 'required': true}) }}
+						</div>
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text tc2">sexe :</span>
+							</label>
+							{{ form_widget(registrationForm.sexe, {'attr': {'class': 'input input-bordered'}, 'required': true}) }}
+						</div>
+						<div class="divider divider-success divider-start " style="color:blue;"></div>
+
+
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text tc2">Email :</span>
+							</label>
+							{{ form_widget(registrationForm.email, {'attr': {'class': 'input input-bordered'}, 'required': true}) }}
+						</div>
+
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text tc2">Mot de pass :</span>
+							</label>
+							{{ form_widget(registrationForm.plainPassword, {
+                               'attr': {'class': 'input input-bordered'}, 'required': true
+                            }) }}
+							{# {{ form_widget(registrationForm.motdepass, {'attr': {'class': 'input input-bordered'}, 'required': true}) }} #}
+
+						</div>
+						<div class="form-control">
+							{{ form_row(registrationForm.agreeTerms,{
+                               'attr': {'class': 'm-3 '}, 'required': true
+                            } ) }}
+						</div>
+						<div class="form-control mt-6">
+							<button class="btn btn-primary tc2" type="submit">S'inscrire</button>
+						</div>
+
+						{{ form_end(registrationForm) }}
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<h1>Register</h1>
+
+	{{ form_errors(registrationForm) }}
+
+	{{ form_start(registrationForm) }}
+	{{ form_row(registrationForm.email) }}
+
+
+	<button type="submit" class="btn">Register</button>
+	{{ form_end(registrationForm) }}
+{% endblock %} #}

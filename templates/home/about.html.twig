@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	A propos!
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background-image: url("{{ asset('bg-icone.png') }}");
+			background-size: cover; /* Optional: Adjust to fit your design */
+			background-repeat: no-repeat; /* Optional: Adjust to fit your design */
+			padding-bottom: 2rem;
+		}
+	</style>
+
+	<div class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-md text-center h-screen pt-80 ">
+		<h1 class="text-4xl font-bold mt-3 mb-7 tc2">À Propos du Tabkh</h1>
+
+		<p class="text-lg mb-4 tc1">
+			Bienvenue sur mon site de recettes ! Créé dans le cadre d'un projet web, ce site regroupe plus de 10 000 délicieuses recettes 🍲  que vous pouvez explorer et apprécier 🥗.
+		</p>
+
+		<p class="text-lg mb-4 tc1">
+			Je souhaite exprimer ma gratitude envers mon professeur qui a été une source d'inspiration tout au long du processus de création de ce projet. Merci pour votre soutien et votre encouragement !
+		</p>
+
+		<p class="text-lg mb-4 tc1">
+			Explorez nos recettes, découvrez de nouvelles saveurs et n'hésitez pas à partager vos propres créations avec la communauté.
+		</p>
+
+		<p class="text-lg mb-4 tc1">
+			Merci de faire partie de notre aventure culinaire !
+		</p>
+		<p class="text-lg mb-4 text-black">
+
+			Merci de prendre un moment pour partager votre expérience sur le site en laissant une note.
+		</p>
+		<div class="rating">
+			<input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
+			<input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
+			<input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked/>
+			<input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
+			<input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"/>
+		</div>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories
+{% endblock %}
+
+{% block body %}
+	<style>
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+	</style>
+
+	<div class="container">
+		<div class="profile-header" style="justify-content: center; align-items: center; margin: 50px;">
+			<div >
+				<input type="text" placeholder="Recherche" class="p-2 border rounded-md"/>
+			</div>
+			<div
+				class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+				<!-- Repeat this block for each category -->
+    				<div class="p-4 bg-white rounded shadow-md">
+					<h2 class="text-xl font-semibold mb-2">Category Name</h2>
+					<!-- Add any additional information or styling for each category -->
+				</div>
+				<!-- Repeat this block for each category -->
+			</div>
+		</div>
+	</div>
+{% endblock %}

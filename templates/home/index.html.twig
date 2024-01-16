@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	MiaaaaM!
+{% endblock %}
+
+{% block body %}
+	<style></style>
+	<div class="container mx-auto w-full">
+		<div class="gap-8 columns-16">
+			<div class="text-start">
+				<h1 class="text-6xl font-bold mt-8 pb-2" style="color:#5C9896;">Des recettes et des actus culinaires ✨ </h1>
+				
+				<h2 class="text-2xl text-gray-600 mt-4 pb-2">Plus de 10 000 recettes faciles et rapides pour vous inspirer en cuisine. 🥐 🍩 🍲 🥗</h2>
+			</div>
+
+			<div class="divider divider-Neutral "></div>
+
+			{# contenaire #}
+			<div class="flex flex-wrap gap-12 justify-center align-start">
+				{% for i in 1..10 %}
+					<div class="card w-80 bg-base-100 shadow-xl min-w-50  ">
+						<figure ><img  src="{{asset('food.jpg')}}" alt="Shoes"/></figure>
+						<div class="card-body">
+							<h2 class="card-title">
+								ABRICOTS À LA CANNELLE
+								{# <div class="badge badge-secondary">NEW</div> #}
+							</h2>
+							<p>Préparation et cuisson: 20 minutes. Pour 6 personnes: 24 beaux abricots murs ...</p>
+							<div class="card-actions justify-start py-1">
+								<div class="badge badge-outline pb-0.5">Abricot</div>
+								<div class="badge badge-outline ">Cannelle</div>
+								
+							</div>
+							<div class="flex justify-end" style="color:#A7DCCD;">
+								
+								<a  href="{{ path('app_rec') }}">Voir plus</a>
+							</div>
+
+
+						</div>
+					</div>
+				{% endfor %}
+
+
+			</div>
+
+			<div class="divider divider-Neutral " style="color:orange;font-weight:bolder;">Easy meal</div>
+
+			<div class="text-center"></div>
+
+			<div class="divider divider-Neutral divider-end" style="color:red;font-weight:bolder;">Easy meal</div>
+
+
+		{% endblock %}

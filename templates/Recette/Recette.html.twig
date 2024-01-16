@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{recette.title}}
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background-image: url("{{ asset('bg-icone.png') }}");
+			background-size: cover;
+			background-repeat: no-repeat;
+			height: 100vh;
+		}
+	</style>
+	{# <div class="bg-black  w-full h-full opacity-10 blur-xl absolute z-10"></div>  container mx-auto  p-8 bg-white rounded-lg shadow-md text-center h-screen#}
+	<div class="container flex flex-row shadow-md h-4/5 bg-white mx-auto rounded-lg  my-8">
+
+
+		<div class="w-full p-8 flex flex-col gap-6">
+			<img class="rounded-lg bg-black opacity-90" src="{{ asset('food.jpg') }}"/>
+			<h1 class="text-4xl font-bold mt-3 mb-7 tc1">{{recette.title}}</h1>
+
+			<p class="text-lg mb-4 tc2">
+				{{recette.description}}
+			</p>
+		</div>
+		<div class="divider lg:divider-horizontal"></div>
+		<div class="w-full p-8 flex flex-col gap-6">
+			<h1 class="text-4xl font-bold  tc1">Ingredients :</h1>
+			<ul class="p-6">
+				{% for item in recette.ingredient %}
+					<li class="tc2 text-lg list-disc">{{ item }}</li>
+				{% endfor %}
+			</ul>
+			<div class="divider "></div>
+			<h1 class="text-4xl font-bold  tc1">Etapes :</h1>
+			<ul class="p-6">
+				{% for i in 1..7 %}
+					<li class="tc2 text-lg list-decimal">
+						awalan
+						{{i}}
+
+					</li>
+				{% endfor %}
+				
+			</ul>
+		</div>
+		{#  #}
+
+
+	</div>
+{% endblock %}

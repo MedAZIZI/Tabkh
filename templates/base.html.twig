@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link
+		href="https://cdn.jsdelivr.net/npm/daisyui@4.4.24/dist/full.min.css" rel="stylesheet" type="text/css"/>
+
+
+		{# <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>"> #}
+
+		<link rel="icon" href="{{asset('lg_T.png')}}">
+
+		{% block stylesheets %}
+			{{ ux_controller_link_tags() }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+		<style>
+			{
+				# .logo {
+					display: flex;
+					align-items: center;
+
+				} #
+			}
+
+			.logo-img {
+
+				width: 150px; /* Adjust the width as needed */
+				height: auto; /* Maintain aspect ratio */
+			}
+		</style>
+	</head>
+	<body>
+
+		{# van bar #}
+		<div class="navbar bg-base-100 justify-between  ">
+			<div class="">
+				<div class="dropdown">
+					<div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewbox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+					</div>
+					<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+						<li>
+							<a href="{{ path('app_home') }}">Home</a>
+						</li>
+						<li>
+							<a href="{{ path('app_rec') }}">Recette</a>
+						</li>
+						<li>
+							<a href="{{ path('app_cat') }}">Categorie</a>
+						</li>
+						<li>
+							<a href="{{ path('app_about') }}">About</a>
+						</li>
+					</ul>
+				</div>
+				<div class="logo">
+					<a href="{{ path('app_home') }}">
+						<img class="logo-img" src="{{ asset('logoT.png') }}" alt="Tabkh Logo's">
+					</a>
+				</div>
+			</div>
+			<div class=" ">
+				<div class="form-control">
+					<input type="text" placeholder="Search" class="input input-bordered w-96 "/>
+				</div>
+			</div>
+
+			<div class="">
+				{% if username == null  %}
+					<a class="btn btn-link " style="color:#A7DCCD;" href="{{ url('app_login') }}">Se connecter</a>
+				{% else %}
+					<a class="  " style="color:#A7DCCD;" >{{username}}</a>
+				{% endif %}
+
+				<div class="dropdown dropdown-end">
+
+					<div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+						<div class="w-24 mask mask-squircle">
+							<img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"/>
+						</div>
+					</div>
+					<ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+						<li>
+							<a class="justify-between" href="{{ url('app_profil') }}">
+								Profile
+								<span class="badge">New</span>
+							</a>
+						</li>
+						<li>
+							<a>Settings</a>
+							{# theme changer #}
+						</li>
+						<li>
+							<a>Logout</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		{% block body %}{% endblock %}
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<script src="https://cdn.tailwindcss.com"></script>
+
+
+	</body>
+</html></body></html>

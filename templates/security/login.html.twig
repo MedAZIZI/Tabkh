@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion !
+{% endblock %}
+
+{% block body %}
+
+	<div class="container mx-auto">
+		<div class="hero min-h-screen bg-base-200">
+			<div class="hero-content flex-col lg:flex-row-reverse">
+				<div class="text-center lg:text-left">
+					<h1 class="text-5xl font-bold tc1">Connecte-toi maintenant!</h1>
+					<p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+				</div>
+				<div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+
+					<form class="card-body" method="post" action="{{ path('app_login') }}">
+
+						{% if error %}
+							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+						{% endif %}
+
+						{% if app.user %}
+							<div class="mb-3">
+								You are logged in as
+								{{ app.user.userIdentifier }},
+								<a href="{{ path('app_logout') }}">Logout</a>
+							</div>
+						{% endif %}
+
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text tc2">Email :</span>
+							</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="input input-bordered" autocomplete="email" required autofocus>
+						</div>
+
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text tc2">Mot de pass :</span>
+							</label>
+                            <input type="password" name="password" id="inputPassword" class="input input-bordered" autocomplete="current-password" required>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+							<label class="label">
+								<a href="#" class="label-text-alt link link-hover tc4">Forgot password?</a>
+							</label>
+							<label class="p-2 tc3">
+								vous avez pas de compte vous pouvez
+								<a href="{{ path('app_register') }}" class="tc1">S'inscrire !</a>
+							</label>
+						</div>
+
+						<div class="form-control mt-6">
+							<button class="btn btn-success tc2" type="submit">Se connecter</button>
+						</div>
+
+						{# {{ form_end(form) }} #}
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+

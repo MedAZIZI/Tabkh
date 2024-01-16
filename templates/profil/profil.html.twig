@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil
+{% endblock %}
+
+{% block body %}
+	<style>
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+		}
+	
+	</style>
+	<div class="container">
+		<div class="profile-header">
+			<div style="display: flex; justify-content: center; align-items: center;margin:50px">
+				<img class="profile-picture" src="{{ asset('chef_hat_bg.png') }}" alt="Profile Picture">
+			</div>
+			<div class="profile-info">
+				<div class="grid grid-cols-2 gap-4">
+					<div class="p-4 bg-gray-200">
+
+						<h1 class="text-xl font-bold">Nom</h1>
+						<p>{{ user.firstName }}</p>
+					</div>
+					<div class="p-4 bg-gray-200">
+						<h1 class="text-xl font-bold">Prenom</h1>
+						<p>{{ user.lastName }}</p>
+					</div>
+					<div class="p-4 bg-gray-200 col-span-2">
+						<h1 class="text-xl font-bold">Email</h1>
+						<p>{{ user.email }}</p>
+					</div>
+				</div>
+				<div class="divider divider-Info " style="color:#5C9896;margin:auto auto;"></div>
+
+				<div class="grid grid-cols-2 gap-4">
+					<div class="p-4 bg-gray-200">
+
+						<h1 class="text-xl font-bold">Sexe</h1>
+						<p>{{ user.gender }}</p>
+					</div>
+					<div class="p-4 bg-gray-200 flex justify-end">
+						{# <button class="btn btn-edit">Modifier</button> #}
+						<a href="/"><button class="bn632-hover bn25">Modifier</button></a>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="divider divider-Info " style="color:#5C9896;margin:auto auto;"></div>
+
+			<div class="profile-history">
+				<h2>Historique</h2>
+				<div class="overflow-x-auto">
+					<table
+						class="table table-zebra">
+						<!-- head -->
+						<thead>
+							<tr>
+								<th></th>
+								<th>Recettes</th>
+								<th>Date</th>
+
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+								<th>1</th>
+								<td>Cy Ganderton</td>
+								<td>Quality Control Specialist</td>
+
+							</tr>
+
+							<tr>
+								<th>2</th>
+								<td>Hart Hagerty</td>
+								<td>Desktop Support Technician</td>
+
+							</tr>
+
+							<tr>
+								<th>3</th>
+								<td>Brice Swyre</td>
+								<td>Tax Accountant</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
