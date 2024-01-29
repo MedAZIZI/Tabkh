@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	MiaaaaM!
+{% endblock %}
+
+{% block body %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<style></style>
+	<div class="container mx-auto w-full">
+		<div class="profile-header" style="justify-content: center; align-items: center; margin: 50px;">
+			<div class="p-2 m-5 text-center">
+				<input type="text " placeholder="Recherche" class="p-2 border rounded-md  size-full"/>
+				<div class="divider"></div>
+				<button class="btn btn-wide btn-success">Rechercher 🔍</button>
+			</div>
+
+		</div>
+		<div class="flex flex-wrap gap-12 justify-center align-start">
+			{% for recette in recettes %}
+				<div class="card w-80 bg-base-100 shadow-xl min-w-50  ">
+					<figure><img src="{{asset('food.jpg')}}" alt="Shoes"/></figure>
+					<div class="card-body">
+						<h2 class="card-title">
+							{{ recette.title }}
+
+						</h2>
+						<p>{{ recette.description }}</p>
+						<div class="card-actions justify-start py-1">
+
+							<div class="badge badge-outline pb-0.5">Abricot</div>
+							<div class="badge badge-outline ">Cannelle</div>
+
+						</div>
+						<div class="flex justify-end" style="color:#A7DCCD;">
+
+							<a href="{{ path('app_rec', {'id': recette.id}) }}">Voir plus</a>
+
+
+						</div>
+
+
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="profile-header text-center" style="justify-content: center; align-items: center; margin: 50px;">
+			<div class="join">
+				<button id="" class="join-item btn btn-sm btn-active">1</button>
+				<button id="" class="join-item btn btn-sm ">2</button>
+				<button id="" class="join-item btn btn-sm ">3</button>
+				<button id="" class="join-item btn btn-sm ">4</button>
+			</div>
+
+		</div>
+		<div class="profile-header text-center" style="justify-content: center; align-items: center; margin: 50px;">
+			<ul id="dataList"></ul>
+			<div id="pagination">
+				<button id="prevPage">Page précédente</button>
+				<span id="currentPage">Page 1</span>
+				<button id="nextPage">Page suivante</button>
+			</div>
+		</div>
+
+	</div>
+	 <script>
+		$(document).ready(function() {
+			let currentPage = 1;
+
+			function loadData(page) {
+				// Effectuer une requête AJAX pour récupérer les données de la page spécifiée
+				$.ajax({
+					url: `/JsonDATA/${page}`,
+					method: 'GET',
+					dataType: 'json',
+					success: function(data) {
+						// Afficher les données dans la liste
+						$('#dataList').empty();
+						data.forEach(function(element) {
+							$('#dataList').append(`<li>${element.Title} - ${element.Description}</li>`);
+						});
+
+						$('#currentPage').text(`Page ${page}`);
+						currentPage = page;
+					},
+					error: function(error) {
+						console.error('Erreur lors de la requête AJAX : ', error);
+					}
+				});
+			}
+
+			// Charger les données initiales
+			loadData(currentPage);
+
+			// Gérer les boutons de pagination
+			$('#prevPage').click(function() {
+				if (currentPage > 1) {
+					loadData(currentPage - 1);
+				}
+			});
+
+			$('#nextPage').click(function() {
+				loadData(currentPage + 1);
+			});
+		});
+	</script>
+    
+
+
+{% endblock %}

@@ -53,7 +53,7 @@
 							<a href="{{ path('app_home') }}">Home</a>
 						</li>
 						<li>
-							<a href="{{ path('app_rec') }}">Recette</a>
+							<a href="{{ path('list_recette') }}">Recette</a> 
 						</li>
 						<li>
 							<a href="{{ path('app_cat') }}">Categorie</a>
@@ -79,7 +79,11 @@
 				{% if username == null  %}
 					<a class="btn btn-link " style="color:#A7DCCD;" href="{{ url('app_login') }}">Se connecter</a>
 				{% else %}
-					<a class="  " style="color:#A7DCCD;" >{{username}}</a>
+					<div class="tooltip  tooltip-accent tooltip-left"  data-tip="Ajouter une recette" > {#  hadii nchufuha inshalah #}
+						<a class="btn btn-accent" style="background:#A7DCCD; margin-right:20px;" href="{{ url('rec_add') }}">+</a>
+					</div>
+					
+					<a class="" style="color:#A7DCCD;margin-right:20px;">{{username}}</a>
 				{% endif %}
 
 				<div class="dropdown dropdown-end">

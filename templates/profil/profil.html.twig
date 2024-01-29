@@ -21,15 +21,15 @@
 					<div class="p-4 bg-gray-200">
 
 						<h1 class="text-xl font-bold">Nom</h1>
-						<p>{{ user.firstName }}</p>
+						<p>{{ user.getNom()}}</p>
 					</div>
 					<div class="p-4 bg-gray-200">
 						<h1 class="text-xl font-bold">Prenom</h1>
-						<p>{{ user.lastName }}</p>
+						<p>{{ user.getPrenom() }}</p>
 					</div>
 					<div class="p-4 bg-gray-200 col-span-2">
 						<h1 class="text-xl font-bold">Email</h1>
-						<p>{{ user.email }}</p>
+						<p>{{ user.getEmail() }}</p>
 					</div>
 				</div>
 				<div class="divider divider-Info " style="color:#5C9896;margin:auto auto;"></div>
@@ -38,7 +38,7 @@
 					<div class="p-4 bg-gray-200">
 
 						<h1 class="text-xl font-bold">Sexe</h1>
-						<p>{{ user.gender }}</p>
+						<p>{{ user.getSexe() }}</p>
 					</div>
 					<div class="p-4 bg-gray-200 flex justify-end">
 						{# <button class="btn btn-edit">Modifier</button> #}
@@ -46,12 +46,12 @@
 
 					</div>
 				</div>
-			</div>
+			</div>	
 
 			<div class="divider divider-Info " style="color:#5C9896;margin:auto auto;"></div>
 
 			<div class="profile-history">
-				<h2>Historique</h2>
+				<h2>Recettes</h2>
 				<div class="overflow-x-auto">
 					<table
 						class="table table-zebra">

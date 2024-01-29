@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Nouvelle recette
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background-image: url("{{ asset('bg-icone.png') }}");
+			background-size: cover;
+			background-repeat: repeat;
+			height: 150vh;
+		}
+	</style>
+
+	<div
+		class="container flex flex-row shadow-md  bg-white mx-auto rounded-lg  my-8">
+
+		{# _____________________________________________________________________________________________________ #}
+		<div
+			class="grid grid-cols-1 md:grid-cols-3 gap-4">
+			<!-- First Row (Title) -->
+			<div class="col-span-3 text-center p-8">
+				<h1 class="text-2xl font-bold " style="color:#5C9896;font-size: 40px;">Nouvelle Recette</h1>
+			</div>
+
+			<!-- Second Row (Three Columns) -->
+
+			<div class="col-span-3 md:col-span-1 pl-2">
+				{{ form_start(form) }}
+
+				<div class="grid grid-cols-4 gap-4">
+					<div class="col-span-1">
+						<label for="titre" class="text-base font-bold">Titre :</label>
+					</div>
+					<div class="col-span-3">
+						{{ form_row(form.title, {'attr': {'class': 'input input-bordered input-accent w-full max-w-xs', 'placeholder': 'Titre', 'id': 'titre'}}) }}
+					</div>
+
+					<div class="col-span-1">
+						<label for="description" class="text-base font-bold">Description :</label>
+					</div>
+					<div class="col-span-3">
+						{{ form_row(form.description, {'attr': {'class': 'textarea textarea-accent textarea-md w-full max-w-xs h-60 resize-y', 'placeholder': 'Description', 'id': 'description'}}) }}
+					</div>
+
+					<div class="col-span-1">
+						<label for="image" class="text-base font-bold">Image :</label>
+					</div>
+					<div class="col-span-3">
+						{{ form_row(form.image_src, {'attr': {'class': 'file-input file-input-bordered file-input-accent w-full max-w-xs', 'placeholder': 'Image', 'id': 'image'}}) }}
+					</div>
+
+					<div class="col-span-1">
+						<label for="categorie" class="text-base font-bold">Categories :</label>
+					</div>
+					<div class="col-span-3">
+						{{ form_row(form.categorie, {'attr': {'class': 'input input-bordered input-accent w-full max-w-xs', 'placeholder': 'Categorie', 'id': 'categorie'}}) }}
+					</div>
+				</div>
+			</div>
+
+
+			{# <div class="divider lg:divider-horizontal"></div> #}
+			<div
+				class="col-span-3 md:col-span-1 border-l border-solid border-accent pl-4">
+
+				<!-- Content for Column 3 -->
+				<div class="col-span-3 md:col-span-1">
+					<h2 class="text-2xl font-bold " style="color:#78B3B6 ;">Les ingredients :
+					</h2>
+					{{ form_row(form.ingredients, {'attr': {'class': 'input input-bordered input-accent w-full max-w-xs hidden', 'placeholder': '...', 'id': 'Ing' }}) }}
+					<div class="w-full p-8 flex flex-row gap-6">
+
+						<div class="w-full p-4 flex flex-col gap-1" id="IngContainer"></div>
+					</div>
+					<div class="w-full p-8 flex flex-row gap-6">
+						<input type="text" id="inputIng" placeholder="..." class="input input-bordered input-accent w-full max-w-xs"/>
+						<a class="btn btn-accent" onclick="ajouterIngredients()">Ajouter ingredient</a>
+					</div>
+					<!-- Content for Column 2 -->
+				</div>
+			</div>
+			{# <div class="divider lg:divider-horizontal"></div> #}
+			<div class="col-span-3 md:col-span-1 border-l border-solid border-accent pl-4">
+				<h2 class="text-2xl font-bold " style="color:#78B3B6 ;">Les étapes :
+				</h2>
+				{{ form_row(form.Etapes, {'attr': {'class': 'input input-bordered input-accent w-full max-w-xs hidden', 'placeholder': '...', 'id': 'etapes' }}) }}
+				<div class="w-full p-8 flex flex-row gap-6">
+					<div class="w-full p-4 flex flex-col gap-1" id="chatContainer"></div>
+				</div>
+				<div class="w-full p-8 flex flex-row gap-6">
+					<input type="text" id="inputEtape" placeholder="..." class="input input-bordered input-accent w-full max-w-xs"/>
+					<a class="btn  btn-accent" onclick="ajouterEtape()">Ajouter étape</a>
+				</div>
+				<!-- Content for Column 2 -->
+			</div>
+
+			<!-- Third Row (Title) -->
+			<div class="col-span-3 text-center pb-6">
+
+				<button type="submit" class="btn  btn-success btn-wide">Ajouter la Recette</button>
+
+				{{ form_end(form) }}
+			</div>
+		</div>
+		{# _____________________________________________________________________________________________________ #}
+		<script>
+			var etap = ""
+            var ingr = ""
+            function ajouterEtape() {
+                var inputEtape = document.getElementById('inputEtape');
+                var chatContainer = document.getElementById('chatContainer');
+                var etape = document.getElementById('recette_Etapes');
+
+                if (inputEtape.value.trim() !== '') {
+                var newChatBubble = document.createElement('div');
+                newChatBubble.className = 'chat chat-start';
+                newChatBubble.innerHTML = '<div class="chat-bubble">' + inputEtape.value + '</div>';
+                etap = etap === "" ? inputEtape.value : etap + "-" + inputEtape.value;
+                etape.value = etap;
+                chatContainer.appendChild(newChatBubble);
+                inputEtape.value = '';
+                }
+            }
+            function ajouterIngredients() {
+                var inputIng = document.getElementById('inputIng');
+                var Container = document.getElementById('IngContainer');
+                var ing = document.getElementById('recette_ingredients');
+
+                if (inputIng.value.trim() !== '') {
+                var newChatBubble = document.createElement('div');
+                newChatBubble.className = 'chat chat-start';
+                newChatBubble.innerHTML = '<div class="chat-bubble">' + inputIng.value + '</div>';
+                ingr = ingr === "" ? inputIng.value : ingr + "," + inputIng.value;
+                ing.value = ingr;
+                Container.appendChild(newChatBubble);
+                inputIng.value = '';
+                }
+            }
+		</script>
+
+	</div>
+{% endblock %}
