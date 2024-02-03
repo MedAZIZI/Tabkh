@@ -11,9 +11,13 @@
 	<div class="container mx-auto w-full">
 		<div class="profile-header" style="justify-content: center; align-items: center; margin: 50px;">
 			<div class="p-2 m-5 text-center">
-				<input type="text " placeholder="Recherche" class="p-2 border rounded-md  size-full"/>
-				<div class="divider"></div>
-				<button class="btn btn-wide btn-success">Rechercher 🔍</button>
+				<form action="{{ path('json_search') }}" method="get">
+
+					<input type="text" placeholder="Recherche" name="query" class="p-2 border rounded-md  size-full"/>
+					<div class="divider"></div>
+					<button class="btn btn-wide btn-success" type="submit">Rechercher 🔍</button>
+				</form>
+
 			</div>
 
 		</div>
@@ -30,14 +34,7 @@
 
 			</div>
 		</div>
-		{# <div class="profile-header text-center" style="justify-content: center; align-items: center; margin: 50px;">
-			<div class="join">
-				<button id="" class="join-item btn btn-sm btn-active">1</button>
-				<button id="" class="join-item btn btn-sm ">2</button>
-				<button id="" class="join-item btn btn-sm ">3</button>
-				<button id="" class="join-item btn btn-sm ">4</button>
-			</div> 
-		</div>#}
+		
 
 	</div>
 	<script>
@@ -53,13 +50,19 @@ success: function (data) { // Afficher les données dans la liste
 $('#dataList').empty();
 data.forEach(function (element) {
 $('#dataList').append(`<div class="card w-80 bg-base-100 shadow-xl min-w-50  ">
-					<figure><img src="{{asset('food.jpg')}}" alt="Shoes"/></figure>
+					<figure><img src="/assets/rec/${
+element.image
+}" alt="Shoes"/></figure>
 					<div class="card-body">
 						<h2 class="card-title">
-							${element.Title}
+							${
+element.Title
+}
 
 						</h2>
-						<p>${element.Description}</p>
+						<p>${
+element.Description
+}</p>
 						<div class="card-actions justify-start py-1">
 
 							<div class="badge badge-outline pb-0.5">Abricot</div>
@@ -67,7 +70,9 @@ $('#dataList').append(`<div class="card w-80 bg-base-100 shadow-xl min-w-50  ">
 
 						</div>
 						<div class="flex justify-end" style="color:#A7DCCD;">
-							{#<a href="{{ path('app_rec', {'id': ${element.Id}}) }}">Voir plus</a>#}
+							{#<a href="{{ path('app_rec', {'id': ${
+element.Id
+}}) }}">Voir plus</a>#}
 
 
 						</div>

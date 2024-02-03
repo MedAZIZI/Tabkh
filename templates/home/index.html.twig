@@ -21,7 +21,7 @@
 			
 				<div class="flex flex-wrap gap-12 justify-center align-start"> {% for recette in recettes %}
 					<div class="card w-80 bg-base-100 shadow-xl min-w-50  ">
-						<figure><img src="{{asset('food.jpg')}}" alt="Shoes"/></figure>
+						<figure><img src="/assets/rec/{{recette.imageSrc}}" alt="food"/></figure>
 						<div class="card-body">
 							<h2 class="card-title">
 								{{ recette.title }}
@@ -38,8 +38,6 @@
 								{# {{ dump(recette.id) }} #}
 								<a href="{{ path('app_rec', {'id': recette.id}) }}">Voir plus</a>
 
-
-
 							</div>
 
 
@@ -49,11 +47,9 @@
 			</div>
 		</div>
 
-		<div class="divider divider-Neutral " style="color:orange;font-weight:bolder;">Easy meal</div>
+		<div class="divider divider-Neutral "></div>
 
-		<div class="text-center"></div>
-
-		<div class="divider divider-Neutral divider-end" style="color:red;font-weight:bolder;">Easy meal</div>
+		
 
 
 	{% endblock %}

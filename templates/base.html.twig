@@ -71,7 +71,13 @@
 			</div>
 			<div class=" ">
 				<div class="form-control">
-					<input type="text" placeholder="Search" class="input input-bordered w-96 "/>
+					{# <input type="text" placeholder="Search" class="input input-bordered w-96 "/> #}
+				<form action="{{ path('json_search') }}" method="get">
+
+					<input type="text" placeholder="Recherche" name="query" class="p-2 border rounded-md  w-96 "/>
+					
+					<button class="btn btn-success" type="submit">🔍</button>
+				</form>
 				</div>
 			</div>
 

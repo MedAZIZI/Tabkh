@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	MiaaaaM!
+{% endblock %}
+
+{% block body %}
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<style></style>
+	<div class="container mx-auto w-full">
+		<div class="profile-header" style="justify-content: center; align-items: center; margin: 50px;">
+			<div class="p-2 m-5 text-center">
+				<input type="text " placeholder="Recherche" class="p-2 border rounded-md  size-full"/>
+				<div class="divider"></div>
+				<button class="btn btn-wide btn-success">Rechercher 🔍</button>
+			</div>
+
+		</div>
+		<div class="profile-header flex flex-wrap gap-12 justify-center align-start">
+			{% for result in results %}
+				<div class="card w-80 bg-base-100 shadow-xl min-w-50  ">
+					<figure><img src="/assets/rec/{{result.imageSrc}}" alt="{{ result.title }}"/></figure>
+					<div class="card-body">
+						<h2 class="card-title">
+							{{ result.title }}
+						</h2>
+						<p>{{ result.description }}</p>
+						<div class="card-actions justify-start py-1">
+
+							<div class="badge badge-outline pb-0.5">Abricot</div>
+							<div class="badge badge-outline ">Cannelle</div>
+
+						</div>
+						<div
+							class="flex justify-end" style="color:#A7DCCD;">
+							{# {{ dump(recette.id) }} #}
+							<a href="{{ path('app_rec', {'id': result.id}) }}">Voir plus</a>
+
+
+						</div>
+
+
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+		
+
+	</div>
+	
+{% endblock %}

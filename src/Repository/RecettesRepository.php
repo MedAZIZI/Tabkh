@@ -20,7 +20,14 @@ class RecettesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Recettes::class);
     }
-
+    public function searchByNomAndDescription($searchTerm)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.title LIKE :searchTerm OR p.ingredients LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$searchTerm.'%')
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Recettes[] Returns an array of Recettes objects
 //     */

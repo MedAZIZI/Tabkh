@@ -6,37 +6,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Recettes;
 
 class HomeController extends AbstractController
 {
+
+    // public function __construct(private readonly EntityManagerInterface $em) {
+
+    // }
     #[Route('/', name: 'app_home')]
     public function index(EntityManagerInterface $entityManager): Response
     {
         if ($this->getUser()) {
             $username = $this->getUser()->getPrenom() . ' ' . $this->getUser()->getNom();
         }
-        $recette = $entityManager->getRepository(Recettes::class)->findAll();
-
-        // $dataArray = [];
-        // foreach ($recette as $item) {
-        //     $dataArray[] = [
-        //         'Id' => $item->getId(),
-        //         'Title' => $item->getTitle(),
-        //         'Description'=> $item->getDescription(),
-        //         'image' => $item->getImageSrc(),
-        //     ];
-        // }
-
-        // Convertire  les données en JSON
-        // $jsonContent = json_encode($dataArray, JSON_PRETTY_PRINT);
-
-        // // Save JSON to a file (adjust the path as needed)
-        // $filePath = $this->getParameter('kernel.project_dir') . '/assets/data/list-rec.json';
-        // file_put_contents($filePath, $jsonContent);
 
         $recettes = $entityManager->getRepository(Recettes::class)->findAll();
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'username' => $username ?? null,
@@ -83,28 +71,11 @@ class HomeController extends AbstractController
 
         ]);
     }
-    // #[Route('/JsonDATA', name: 'json_rec')]
-    // public function JsonDATA(EntityManagerInterface $entityManager): JsonResponse
-    // {
-    //     $recette = $entityManager->getRepository(Recettes::class)->findAll();
 
-    //     $dataArray = [];
-    //     foreach ($recette as $item) {
-    //         $dataArray[] = [
-    //             'Id' => $item->getId(),
-    //             'Title' => $item->getTitle(),
-    //             'Description' => $item->getDescription(),
-    //             'image' => $item->getImageSrc(),
-    //         ];
-    //     }
-
-
-    //     return new JsonResponse($dataArray);
-    // }  
     #[Route('/JsonDATA/{page}', name: 'json_data')]
     public function jsonData(int $page = 1, EntityManagerInterface $entityManager): JsonResponse
     {
-        $pageSize = 2; // Number of items per page
+        $pageSize = 6; // Number of items per page
         $offset = ($page - 1) * $pageSize;
 
         $recettes = $entityManager->getRepository(Recettes::class)
@@ -123,7 +94,34 @@ class HomeController extends AbstractController
         return new JsonResponse($dataArray);
     }
 
-    #[Route('/recette/{id}', name: 'app_rec')] ///{id}
+    #[Route('/Search', name: 'json_search')]
+    public function Recherche(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        if ($this->getUser()) {
+            $username = $this->getUser()->getPrenom() . ' ' . $this->getUser()->getNom();
+        }
+        $query = $request->query->get('query');
+
+        $results = $entityManager->getRepository(Recettes::class)->searchByNomAndDescription($query);
+
+        // $dataArray = [];
+        // foreach ($results as $item) {
+        //     $dataArray[] = [
+        //         'Id' => $item->getId(),
+        //         'Title' => $item->getTitle(),
+        //         'Description' => $item->getDescription(),
+        //         'image' => $item->getImageSrc(),
+        //     ];
+        // }
+        // return new JsonResponse($dataArray);
+        return $this->render('Recette/resultat.html.twig', [
+            'query' => $query,
+            'results' => $results,
+            'username' => $username ?? null,
+        ]);
+    }
+
+    #[Route('/recette/{id}', name: 'app_rec')]
     public function Recette(EntityManagerInterface $entityManager, int $id): Response
     {
         if ($this->getUser()) {

@@ -9,8 +9,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 
-#[ORM\Entity(repositoryClass: RecettesRepository::class)]
 #[Vich\Uploadable]
+#[ORM\Entity(repositoryClass: RecettesRepository::class)]
 class Recettes
 {
     #[ORM\Id]
@@ -33,14 +33,15 @@ class Recettes
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $categorie = null;
 
-    #[Vich\UploadableField(mapping: 'Recettes', fileNameProperty: 'image_src', size: 'imageSize')]
+    #[Vich\UploadableField(mapping: 'Recettes', fileNameProperty: 'imageSrc', size: 'imageSize')]
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 1000, nullable: true)]
-    private ?string $image_src = null;
+    private ?string $imageSrc = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
+
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
@@ -169,14 +170,14 @@ class Recettes
         return $this->imageFile;
     }
 
-    public function setImageSrc(?string $image_src): void
+    public function setImageSrc(?string $imageSrc): void
     {
-        $this->image_src = $image_src;
+        $this->imageSrc = $imageSrc;
     }
 
     public function getImageSrc(): ?string
     {
-        return $this->image_src;
+        return $this->imageSrc;
     }
 
     public function setImageSize(?int $imageSize): void
