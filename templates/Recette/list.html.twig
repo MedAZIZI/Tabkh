@@ -39,30 +39,27 @@
 	</div>
 	<script>
 		$(document).ready(function () {
-let currentPage = 1;
+		let currentPage = 1;
 
-function loadData(page) { // Effectuer une requête AJAX pour récupérer les données de la page spécifiée
-$.ajax({
-url: `/JsonDATA/${page}`,
-method: 'GET',
-dataType: 'json',
-success: function (data) { // Afficher les données dans la liste
-$('#dataList').empty();
-data.forEach(function (element) {
-$('#dataList').append(`<div class="card w-80 bg-base-100 shadow-xl min-w-50  ">
-					<figure><img src="/assets/rec/${
-element.image
-}" alt="Shoes"/></figure>
-					<div class="card-body">
-						<h2 class="card-title">
-							${
-element.Title
-}
-
-						</h2>
+		function loadData(page) { // Effectuer une requête AJAX pour récupérer les données de la page spécifiée
+			$.ajax({
+			url: `/JsonDATA/${page}`,
+			method: 'GET',
+			dataType: 'json',
+			success: function (data) { // Afficher les données dans la liste
+			$('#dataList').empty();
+			data.forEach(function (element) {
+			$('#dataList').append(
+						`<div class="card w-80 bg-base-100 shadow-xl min-w-50  ">
+								<figure><img src="/assets/rec/${ element.image}" alt="Shoes"/></figure>
+								<div class="card-body">
+									<h2 class="card-title">
+										${
+						element.Title
+						}</h2>
 						<p>${
-element.Description
-}</p>
+						element.Description
+						}</p>
 						<div class="card-actions justify-start py-1">
 
 							<div class="badge badge-outline pb-0.5">Abricot</div>
@@ -71,40 +68,38 @@ element.Description
 						</div>
 						<div class="flex justify-end" style="color:#A7DCCD;">
 							{#<a href="{{ path('app_rec', {'id': ${
-element.Id
-}}) }}">Voir plus</a>#}
-
-
-						</div>
-
+						element.Id
+						}}) }}">Voir plus</a>#}
 
 					</div>
-				</div>`);
-});
 
-$('#currentPage').text (`Page ${page}`);
-currentPage = page;
-},
-error: function (error) {
-console.error('Erreur lors de la requête AJAX : ', error);
-}
-});
-}
+				</div>
+			</div>`);
+			});
 
-// Charger les données initiales
-loadData(currentPage);
+			$('#currentPage').text (`Page ${page}`);
+			currentPage = page;
+			},
+			error: function (error) {
+			console.error('Erreur lors de la requête AJAX : ', error);
+			}
+			});
+		}
 
-// Gérer les boutons de pagination
-$('#prevPage').click(function () {
-if (currentPage > 1) {
-loadData(currentPage - 1);
-}
-});
+		// Charger les données initiales
+		loadData(currentPage);
 
-$('#nextPage').click(function () {
-loadData(currentPage + 1);
-});
-});
+		// Gérer les boutons de pagination
+		$('#prevPage').click(function () {
+		if (currentPage > 1) {
+		loadData(currentPage - 1);
+		}
+		});
+
+		$('#nextPage').click(function () {
+		loadData(currentPage + 1);
+		});
+		});
 	</script>
 
 
